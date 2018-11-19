@@ -3,35 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coschmit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mgessa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 14:13:08 by coschmit          #+#    #+#             */
-/*   Updated: 2018/11/14 12:38:00 by coschmit         ###   ########.fr       */
+/*   Created: 2018/11/12 02:06:44 by mgessa            #+#    #+#             */
+/*   Updated: 2018/11/12 02:54:14 by mgessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
-size_t			ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
 {
-	size_t		i;
-	size_t		dstlength;
-	size_t		srclength;
+	size_t	sz1;
+	size_t	sz2;
+	size_t	i;
 
 	i = 0;
-	dstlength = ft_strlen(dst);
-	srclength = ft_strlen(src);
-	if (size <= dstlength)
-		return (srclength + size);
-	while ((dst[i] != '\0') && i < (size - 1))
-		i++;
-	while (*src && i < (size - 1))
+	sz1 = 0;
+	while (dst[sz1] != '\0' && sz1 < dstsize)
+		sz1++;
+	sz2 = ft_strlen(src);
+	if (dstsize <= 0)
+		return (sz1 + sz2);
+	while (src[i] && sz1 + i < dstsize - 1)
 	{
-		dst[i] = *src;
+		dst[sz1 + i] = src[i];
 		i++;
-		src++;
 	}
-	dst[i] = '\0';
-	return (dstlength + srclength);
+	if (sz1 < dstsize)
+		dst[sz1 + i] = '\0';
+	return (sz1 + sz2);
 }

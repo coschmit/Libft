@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coschmit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mgessa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 14:13:31 by coschmit          #+#    #+#             */
-/*   Updated: 2018/11/14 10:13:32 by coschmit         ###   ########.fr       */
+/*   Created: 2018/11/07 17:20:24 by mgessa            #+#    #+#             */
+/*   Updated: 2018/11/11 18:33:27 by mgessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncat(char *dest, const char *src, size_t nb)
+char	*ft_strncat(char *restrict dest, const char *restrict src, size_t n)
 {
-	size_t	i;
-	size_t	j;
+	int			i;
+	size_t		pos_src;
 
 	i = 0;
 	while (dest[i] != '\0')
 		i++;
-	j = 0;
-	while (src[j] != '\0' && j < nb)
+	pos_src = 0;
+	while (src[pos_src] && pos_src < n)
 	{
-		dest[i] = src[j];
-		j++;
+		dest[i] = src[pos_src];
+		pos_src++;
 		i++;
 	}
 	dest[i] = '\0';

@@ -6,7 +6,7 @@
 #    By: coschmit <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/09 15:15:19 by coschmit          #+#    #+#              #
-#    Updated: 2018/11/17 15:28:17 by coschmit         ###   ########.fr        #
+#    Updated: 2018/11/19 16:51:37 by coschmit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ NAME = libft.a
 
 SRCS =	ft_memset.c \
 		ft_lstnew.c \
+		ft_strnprint.c \
+		ft_strndigit.c \
 		ft_swap.c \
 		ft_isspace.c \
 		ft_strupcase.c \

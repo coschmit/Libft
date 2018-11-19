@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnprint.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgessa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/07 17:45:58 by mgessa            #+#    #+#             */
-/*   Updated: 2018/11/07 18:46:32 by mgessa           ###   ########.fr       */
+/*   Created: 2018/11/15 14:15:09 by mgessa            #+#    #+#             */
+/*   Updated: 2018/11/15 14:17:45 by mgessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+int		ft_strnprint(char *str, size_t n)
 {
-	int		i;
+	size_t		i;
 
 	i = 0;
-	while (s[i] != '\0')
+	while (i < n)
 	{
-		if (s[i] == c)
-			return ((char*)&s[i]);
+		if (!ft_isprint(str[i]))
+			return (0);
 		i++;
 	}
-	if (c == '\0')
-		return ((char*)&s[i]);
-	return (NULL);
+	return (1);
 }

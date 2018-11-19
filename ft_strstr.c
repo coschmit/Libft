@@ -3,36 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coschmit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mgessa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 14:15:30 by coschmit          #+#    #+#             */
-/*   Updated: 2018/11/14 12:09:20 by coschmit         ###   ########.fr       */
+/*   Created: 2018/11/07 18:34:48 by mgessa            #+#    #+#             */
+/*   Updated: 2018/11/12 02:07:19 by mgessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
-char	*ft_strstr(const char *s1, const char *s2)
+char	*ft_strstr(const char *str, const char *to_find)
 {
-	int i;
-	int j;
+	int		sz;
 
-	i = 0;
-	if (s2[0] == '\0')
-		return ((char *)s1);
-	while (s1[i] != '\0')
+	if (ft_strlen(to_find) == 0)
+		return ((char *)str);
+	sz = ft_strlen(to_find);
+	while (*str != '\0')
 	{
-		j = 0;
-		while (s2[j] == s1[i + j])
-		{
-			if (s2[j + 1] == '\0')
-			{
-				return ((char *)s1 + i);
-			}
-			j++;
-		}
-		i++;
+		if (ft_strncmp(str, to_find, sz) == 0)
+			return ((char *)str);
+		str++;
 	}
 	return (NULL);
 }

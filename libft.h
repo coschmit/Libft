@@ -6,7 +6,7 @@
 /*   By: coschmit <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 12:31:54 by coschmit          #+#    #+#             */
-/*   Updated: 2018/11/17 15:22:56 by coschmit         ###   ########.fr       */
+/*   Updated: 2018/11/19 16:53:24 by coschmit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+int					ft_strnprint(char *str, size_t n);
+int					ft_strndigit(char *str, size_t n);
 int					ft_isspace(char c);
 char				*ft_strupcase(char *str);
 char				*ft_strlowcase(char *str);

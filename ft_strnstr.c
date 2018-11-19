@@ -3,41 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coschmit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mgessa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 14:14:58 by coschmit          #+#    #+#             */
-/*   Updated: 2018/11/08 14:15:01 by coschmit         ###   ########.fr       */
+/*   Created: 2018/11/07 18:57:11 by mgessa            #+#    #+#             */
+/*   Updated: 2018/11/12 02:35:49 by mgessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	size_t	i;
-	int		j;
-	char	*pt;
+	size_t		sz;
+	size_t		i;
 
 	i = 0;
-	pt = 0;
-	if (little[i] == '\0')
-		return ((char *)big);
-	while (big[i] != '\0' && i < len)
+	if (ft_strlen(to_find) == 0)
+		return ((char *)str);
+	sz = ft_strlen(to_find);
+	while (*str != '\0' && len)
 	{
-		if (big[i] == little[0])
-		{
-			pt = (char *)big + i;
-			j = 0;
-			while (big[i + j] == little[j] && i + j < len)
-			{
-				if (little[j + 1] == '\0')
-					return (pt);
-				j++;
-			}
-			pt = 0;
-		}
-		i++;
+		if (sz > len)
+			return (NULL);
+		if (ft_strncmp(str, to_find, sz) == 0)
+			return ((char *)str);
+		len--;
+		str++;
 	}
 	return (NULL);
 }

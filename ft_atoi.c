@@ -3,39 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coschmit <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mgessa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 14:07:01 by coschmit          #+#    #+#             */
-/*   Updated: 2018/11/17 14:33:37 by coschmit         ###   ########.fr       */
+/*   Created: 2018/11/07 20:55:51 by mgessa            #+#    #+#             */
+/*   Updated: 2018/11/15 14:53:16 by mgessa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "libft.h"
-
-int	ft_atoi(const char *str)
+static int	ft_escape_seq(char c)
 {
-	long i;
-	long negative;
-	long nbr;
+	return (((c == '\f' || c == 127)
+				|| (c == '\t' || c == '\n'))
+			|| ((c == '\r' || c == '\v')
+				|| (c == '\f' || c == ' ')));
+}
 
-	nbr = 0;
-	negative = 0;
-	i = 0;
-	while ((str[i] == '\n') || (str[i] == '\t') || (str[i] == '\v') ||
-			(str[i] == ' ') || (str[i] == '\f') || (str[i] == '\r'))
-		i++;
-	if (str[i] == '-')
-		negative = 1;
-	if ((str[i] == '+') || (str[i] == '-'))
-		i++;
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
+int			ft_atoi(const char *str)
+{
+	int		symbol;
+	int		value;
+
+	symbol = 1;
+	value = 0;
+	while (ft_escape_seq(*str))
+		str++;
+	if (*str == '+' || *str == '-')
 	{
-		nbr *= 10;
-		nbr += str[i] - '0';
-		i++;
+		if (*str == '-')
+			symbol = -1;
+		str++;
 	}
-	if (negative == 1)
-		return (-nbr);
-	return (nbr);
+	while (*str >= '0' && *str <= '9')
+	{
+		if (symbol == -1)
+			value = (value * 10) - (*str - 48);
+		else
+			value = (value * 10) + (*str - 48);
+		str++;
+	}
+	return (value);
 }
